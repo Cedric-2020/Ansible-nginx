@@ -1,0 +1,3 @@
+- hosts: nginx1
+  roles:
+    - webserver

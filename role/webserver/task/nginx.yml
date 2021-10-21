@@ -1,0 +1,26 @@
+---
+- name: Nginx install
+  package:
+    name: "{{ nginx_packages }}"
+    state: latest
+
+      #- name: Nginx copy file system
+      #copy:
+      #dest: /etc/nginx/nginx.conf
+      #src: etc/nginx/nginx.conf
+      #owner: root
+      #group: root
+      #mode: 0644
+      #notify: Restart_Nginx
+
+
+
+- name: Add static site config files
+  template:
+    src: etc/nginx/conf.d/site.conf.j2
+    dest: "/etc/nginx/conf.d/{{ item.name }}.conf"
+    owner: root
+    group: root
+    mode: 0644
+    with_items: "{{ webserver_sites }}"
+  notify: Reload NGINX

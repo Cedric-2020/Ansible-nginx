@@ -1,0 +1,3 @@
+webserver_sites:
+  name: mysite1.cd.com
+  root: /usr/share/nginx/mysite1.cd.com
